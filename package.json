@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git@github.com:fink-lang/fink-loader"
   },
-  "bugs": "https://github.com/fink-lang/larix/issues",
-  "homepage": "https://github.com/fink-lang/larix",
+  "bugs": "https://github.com/fink-lang/fink-loader/issues",
+  "homepage": "https://github.com/fink-lang/fink-loader",
   "scripts": {
     "default": "run clean test build",
     "clean": "rimraf ./build",
