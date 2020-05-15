@@ -9,8 +9,6 @@
 compile = fn filename, source, options:
   loxia_options = dict:
     use_babel_conf: true
-    filename
-    sourceFileName: filename
     ...options
 
   ast = parse source, filename

@@ -24,7 +24,7 @@ describe loader, fn:
 
   it 'compiles with sourcemap', fn:
     await loader
-      {...ctx, query:'?{"sourceMaps": true}'}
+      {...ctx, query:'?{"source_maps": true}'}
       'foo = 1234 || spam'
 
     [[,, source_map]] = mock_callback.mock.calls
