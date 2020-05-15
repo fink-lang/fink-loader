@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loader compiles fink 1`] = `"export const foo = 1234 || spam;"`;
+
+exports[`loader compiles with sourcemap 1`] = `
+Object {
+  "mappings": "AAAA,aAAA,GAAG,GAAG,QAAQ,IAAd",
+  "names": Array [],
+  "sources": Array [
+    "unknown",
+  ],
+  "sourcesContent": Array [
+    "foo = 1234 || spam",
+  ],
+  "version": 3,
+}
+`;
+
+exports[`loader handles errors 1`] = `
+[Error: undefined:1:7
+1| foo = [
+          ^
+
+Expected ',' or indented new line or ']'.
+]
+`;
