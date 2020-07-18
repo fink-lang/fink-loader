@@ -10,7 +10,7 @@ Object {
     "unknown",
   ],
   "sourcesContent": Array [
-    "foo = 1234 || spam",
+    "foo = 1234 or spam",
   ],
   "version": 3,
 }
@@ -21,6 +21,6 @@ exports[`loader handles errors 1`] = `
 1| foo = [
           ^
 
-Expected ',' or indented new line or ']'.
+Expected ',' or indented(>=1) new line or ']'.
 ]
 `;

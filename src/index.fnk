@@ -3,7 +3,11 @@
 {generate} = import '@fink/loxia'
 {parse} = import '@fink/larix'
 
-{with_this, as_error} = import './js-compat'
+{with_this} = import '@fink/js-interop/this'
+{Error} = import '@fink/js-interop/globals'
+{new} = import '@fink/js-interop/reflect'
+{null} = import '@fink/js-interop/nullish'
+
 
 
 compile = fn filename, source, options:
@@ -19,21 +23,23 @@ compile = fn filename, source, options:
       generate ast, filename, source, loxia_options
 
 
+
 loader = fn ctx, source, in_source_map, meta:
   options = dict:
     ...getOptions ctx
     inputSourceMap: in_source_map
 
   filename = ctx.resourcePath
-  callback = ctx.async()
+  callback = ctx.async _
 
   {code, source_map, errors} = await compile filename, source, options
 
   match errors:
     {length: ? > 0}:
       [{error}] = errors
-      callback as_error error
+      callback new Error, error
     else:
       callback null, code, source_map, meta
+
 
 default = with_this loader
