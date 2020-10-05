@@ -3,16 +3,16 @@
 {generate} = import '@fink/loxia'
 {parse} = import '@fink/larix'
 
-{with_this} = import '@fink/js-interop/this'
-{Error} = import '@fink/js-interop/globals'
-{new} = import '@fink/js-interop/reflect'
-{null} = import '@fink/js-interop/nullish'
+{with_this} = import '@fink/js-interop/this.fnk'
+{Error} = import '@fink/js-interop/globals.fnk'
+{new} = import '@fink/js-interop/reflect.fnk'
+{null} = import '@fink/js-interop/nullish.fnk'
 
 
 
 compile = fn filename, source, options:
   loxia_options = dict:
-    use_babel_conf: true
+    import: {ext: {abs: '.js', rel: '.fnk'}}
     ...options
 
   ast = parse source, filename
@@ -25,9 +25,11 @@ compile = fn filename, source, options:
 
 
 loader = fn ctx, source, in_source_map, meta:
+  {babel: babel_opts={}, ...loxia_opts} = getOptions ctx
+
   options = dict:
-    ...getOptions ctx
-    inputSourceMap: in_source_map
+    ...loxia_opts
+    babel: {...babel_opts, inputSourceMap: in_source_map}
 
   filename = ctx.resourcePath
   callback = ctx.async _

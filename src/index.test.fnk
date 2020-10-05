@@ -1,11 +1,14 @@
-{describe, it, expect, to_match_snapshot, mock_fn} = import '@fink/jest'
-{loader} = import '.'
+{describe, it, expect, to_match_snapshot, mock_fn} = import '@fink/jest/test.fnk'
+
+{loader} = import './index.fnk'
+
 
 mock_callback = mock_fn _
 
 ctx = dict:
   query: ''
   async: mock_fn fn: mock_callback
+
 
 
 describe loader, fn:
@@ -24,7 +27,7 @@ describe loader, fn:
 
   it 'compiles with sourcemap', fn:
     await loader
-      {...ctx, query:'?{"source_maps": true}'}
+      {...ctx, query: '?{"source_maps": true}'}
       'foo = 1234 or spam'
 
     [[,, source_map]] = mock_callback.mock.calls
