@@ -1,7 +1,7 @@
 {getOptions} = import 'loader-utils'
 
-{generate} = import '@fink/loxia'
-{parse} = import '@fink/larix'
+{generate} = import '@fink/loxia/generate.fnk'
+{parse} = import '@fink/larix/parser.fnk'
 
 {with_this} = import '@fink/js-interop/this.fnk'
 {Error} = import '@fink/js-interop/globals.fnk'
