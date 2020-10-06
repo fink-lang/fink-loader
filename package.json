@@ -29,18 +29,18 @@
   },
   "peerDependencies": {
     "@babel/core": ">=7.0.0",
-    "@fink/larix": ">=9.0.0",
-    "@fink/loxia": ">=13.0.0",
+    "@fink/larix": ">=13.0.0",
+    "@fink/loxia": ">=14.0.0",
     "webpack": ">=4.0"
   },
   "devDependencies": {
-    "@fink/cli": "^7.0.0",
-    "@fink/jest": "^6.0.0",
-    "@fink/larix": "^12.3.0",
-    "@fink/loxia": "^13.0.0",
+    "@fink/cli": "^8.0.0",
+    "@fink/jest": "^7.0.0",
+    "@fink/larix": "^13.1.0",
+    "@fink/loxia": "^14.0.2",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
-    "jest-cli": "^26.4.2",
+    "jest-cli": "^26.5.2",
     "loader-utils": "^2.0.0",
     "npx-run": "^2.1.2",
     "semantic-release": "^17.1.2"
