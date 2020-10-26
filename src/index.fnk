@@ -4,8 +4,7 @@
 {parse} = import '@fink/larix/parser.fnk'
 
 {with_this} = import '@fink/js-interop/this.fnk'
-{Error} = import '@fink/js-interop/globals.fnk'
-{new} = import '@fink/js-interop/reflect.fnk'
+{error, is_error} = import '@fink/std-lib/error.fnk'
 {null} = import '@fink/js-interop/nullish.fnk'
 
 
@@ -37,9 +36,13 @@ loader = fn ctx, source, in_source_map, meta:
   {code, source_map, errors} = await compile filename, source, options
 
   match errors:
-    {length: ? > 0}:
-      [{error}] = errors
-      callback new Error, error
+    [{}]:
+      [err] = errors
+      match err:
+        is_error ?:
+          callback err
+        else:
+          callback error err.error, {stack: err.stack}
     else:
       callback null, code, source_map, meta
 

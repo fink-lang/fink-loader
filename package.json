@@ -5,6 +5,12 @@
   "engines": {
     "node": ">=14.0.0"
   },
+  "keywords": [
+    "webpack-loader",
+    "loader",
+    "fink",
+    "fink-lang"
+  ],
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -36,8 +42,8 @@
   "devDependencies": {
     "@fink/cli": "^8.0.0",
     "@fink/jest": "^7.0.0",
-    "@fink/larix": "^13.1.0",
-    "@fink/loxia": "^14.0.2",
+    "@fink/larix": "^15.1.0",
+    "@fink/loxia": "^17.1.0",
     "commitizen": "^4.2.1",
     "cz-conventional-changelog": "^3.3.0",
     "jest-cli": "^26.5.2",
@@ -52,6 +58,6 @@
   },
   "dependencies": {
     "@fink/js-interop": "^2.0.0",
-    "@fink/std-lib": "^5.0.0"
+    "@fink/std-lib": "^6.0.0"
   }
 }

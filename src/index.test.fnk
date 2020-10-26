@@ -8,7 +8,7 @@ mock_callback = mock_fn _
 ctx = dict:
   query: ''
   async: mock_fn fn: mock_callback
-
+  resourcePath: './test.fnk'
 
 
 describe loader, fn:

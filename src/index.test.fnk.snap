@@ -7,7 +7,7 @@ Object {
   "mappings": "AAAA,aAAA,GAAG,GAAG,QAAQ,IAAd",
   "names": Array [],
   "sources": Array [
-    "unknown",
+    "./test.fnk",
   ],
   "sourcesContent": Array [
     "foo = 1234 or spam",
@@ -17,10 +17,10 @@ Object {
 `;
 
 exports[`loader handles errors 1`] = `
-[Error: undefined:1:7
+[Error: ./test.fnk:1:7
 1| foo = [
           ^
 
-Expected ',' or indented(>=1) new line or ']'.
+Expected \`,\` or indented(>=1) new line or \`]\`.
 ]
 `;
