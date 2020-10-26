@@ -7,7 +7,7 @@ Object {
   "mappings": "AAAA,aAAA,GAAG,GAAG,QAAQ,IAAd",
   "names": Array [],
   "sources": Array [
-    "unknown",
+    "./test.fnk",
   ],
   "sourcesContent": Array [
     "foo = 1234 or spam",
@@ -16,11 +16,22 @@ Object {
 }
 `;
 
-exports[`loader handles errors 1`] = `
-[Error: undefined:1:7
+exports[`loader handles compile errors 1`] = `
+[Error: ./test.fnk:1:0
+1| 123 = foo
+   ^
+
+Unable to transform \`assign =\`.
+
+TypeError: Property left of AssignmentExpression expected node to be of a type ["LVal"] but instead got "NumericLiteral"
+]
+`;
+
+exports[`loader handles parsing errors 1`] = `
+[Error: ./test.fnk:1:7
 1| foo = [
           ^
 
-Expected ',' or indented(>=1) new line or ']'.
+Expected \`,\` or indented(>=1) new line or \`]\`.
 ]
 `;

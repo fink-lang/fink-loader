@@ -8,7 +8,7 @@ mock_callback = mock_fn _
 ctx = dict:
   query: ''
   async: mock_fn fn: mock_callback
-
+  resourcePath: './test.fnk'
 
 
 describe loader, fn:
@@ -37,7 +37,7 @@ describe loader, fn:
       to_match_snapshot
 
 
-  it 'handles errors', fn:
+  it 'handles parsing errors', fn:
     await loader
       ctx
       'foo = ['
@@ -47,3 +47,16 @@ describe loader, fn:
     expect
       err
       to_match_snapshot
+
+
+  it 'handles compile errors', fn:
+    await loader
+      ctx
+      '123 = foo'
+
+    [[err]] = mock_callback.mock.calls
+
+    expect
+      err
+      to_match_snapshot
+
