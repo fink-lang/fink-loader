@@ -10,7 +10,7 @@
 
 
 compile = fn filename, source, options:
-  loxia_options = dict:
+  loxia_options = rec:
     import: {ext: {abs: '.js', rel: '.fnk'}}
     ...options
 
@@ -26,7 +26,7 @@ compile = fn filename, source, options:
 loader = fn ctx, source, in_source_map, meta:
   {babel: babel_opts={}, ...loxia_opts} = getOptions ctx
 
-  options = dict:
+  options = rec:
     ...loxia_opts
     babel: {...babel_opts, inputSourceMap: in_source_map}
 

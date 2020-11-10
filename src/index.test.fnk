@@ -5,7 +5,7 @@
 
 mock_callback = mock_fn _
 
-ctx = dict:
+ctx = rec:
   query: ''
   async: mock_fn fn: mock_callback
   resourcePath: './test.fnk'
