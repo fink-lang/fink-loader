@@ -4,31 +4,30 @@
 {parse} = import '@fink/larix/parser.fnk'
 
 {with_this} = import '@fink/js-interop/this.fnk'
-{error, is_error} = import '@fink/std-lib/error.fnk'
 {null} = import '@fink/js-interop/nullish.fnk'
+{error, is_error} = import '@fink/std-lib/error.fnk'
+{is_empty} = import '@fink/std-lib/iter.fnk'
 
 
 
 compile = fn filename, source, options:
   loxia_options = rec:
-    import: {ext: {abs: '.js', rel: '.fnk'}}
+    import.ext: {abs: '.js', rel: '.fnk'}
     ...options
 
   ast = parse source, filename
-  match ast:
-    {errors: [{}]}:
-      ast
-    else:
-      generate ast, filename, source, loxia_options
 
+  match ast:
+    {errors: is_empty ?}:
+      generate ast, filename, source, loxia_options
+    else:
+      ast
 
 
 loader = fn ctx, source, in_source_map, meta:
-  {babel: babel_opts={}, ...loxia_opts} = getOptions ctx
-
   options = rec:
-    ...loxia_opts
-    babel: {...babel_opts, inputSourceMap: in_source_map}
+    ... getOptions ctx
+    babel.inputSourceMap: in_source_map
 
   filename = ctx.resourcePath
   callback = ctx.async _
@@ -37,15 +36,16 @@ loader = fn ctx, source, in_source_map, meta:
 
   match errors:
     --- istanbul ignore else ---
-    [{}]:
+    is_empty ?:
+      callback null, code, source_map, meta
+    else:
       [err] = errors
       match err:
         is_error ?:
           callback err
         else:
           callback error err.error, {stack: err.stack}
-    else:
-      callback null, code, source_map, meta
+
 
 
 default = with_this loader
