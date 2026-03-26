@@ -1,3 +1,3 @@
-# fink-loader
+The next official fink compiler now lives at https://github.com/fink-lang/fink
 
-A webpack loader for fink.
+The initial fink implementation is obsolete and has been archived.
